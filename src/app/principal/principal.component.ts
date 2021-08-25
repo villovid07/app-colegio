@@ -8,6 +8,10 @@ import { ProfesorService } from '../shared/services/profesor.service';
 import { AsignaturaService } from '../shared/services/asignatura.service';
 import { EstudianteService } from '../shared/services/estudiante.service';
 
+
+/**
+ * Componente que estbalece las funcionalidades de la pantalla principal
+ */
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
@@ -35,6 +39,9 @@ export class PrincipalComponent implements OnInit {
 
   }
 
+  /**
+   * metodo ngoninit del componente que permite inicializar el listado de profesores
+   */
   async ngOnInit(){
     try {
       this._mensajesService.procesando();
@@ -45,12 +52,16 @@ export class PrincipalComponent implements OnInit {
     }
   }
 
+  /**
+   * metodo que permite realizar la busqueda de asignaturas teniendo en cuenta el docente seleccionado
+   */
   async buscar(){
     if(this.formProfesor.valid){
       try {
         this._mensajesService.procesando();
         let idProfesor = this.formProfesor.value.profesor;
-        this.lstAsignatura = await this._asignaturaService.darAsignaturas(idProfesor).toPromise();    
+        this.lstAsignatura = await this._asignaturaService.darAsignaturas(idProfesor).toPromise();  
+        this.lstEstudiante = new Array();  
         this._mensajesService.cerrarMensaje();
       } catch (error) {
         this._mensajesService.enviarMensaje("Error", "No se puede realizar la consulta de las asignaturas", "e"); 
@@ -61,6 +72,9 @@ export class PrincipalComponent implements OnInit {
     }
   }
 
+  /**
+   * metodo que permite reinicializar la app 
+   */
   async reiniciar(){
 
     this.formProfesor.reset({
@@ -71,6 +85,10 @@ export class PrincipalComponent implements OnInit {
 
   }
 
+  /**
+   * metodo que permite ver los estudiantes seleccionada una asignatura en particular
+   * @param item - asignatura a buscar
+   */
   async verEstudiantes( item : IAsignatura){
 
     try {
