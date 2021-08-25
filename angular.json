@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "zoom-routing": {
+    "colegio-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/zoom-routing",
+            "outputPath": "dist/colegio-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,9 +24,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/primeng/resources/themes/saga-green/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+            ]
           },
           "configurations": {
             "production": {
@@ -62,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "zoom-routing:build"
+            "browserTarget": "colegio-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "zoom-routing:build:production"
+              "browserTarget": "colegio-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "zoom-routing:build"
+            "browserTarget": "colegio-app:build"
           }
         },
         "test": {
@@ -110,15 +116,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "zoom-routing:serve"
+            "devServerTarget": "colegio-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "zoom-routing:serve:production"
+              "devServerTarget": "colegio-app:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "zoom-routing"
+  "defaultProject": "colegio-app"
 }

@@ -1,0 +1,27 @@
+.color-blanco{
+    color: white;
+}
+
+.icono-tabla {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.color-success{
+    color: #4dbd74;
+}
+
+.invalida-mia{
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #f86c6b;
+}
+
+.th-peque{
+    width: 150px;
+}
+
+.tabla{
+    font-size: 10px;
+}

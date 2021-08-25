@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    min-width: 0 !important;
+}
+
+.main{
+  text-align: left !important;
+}
+
+table.prime-tablita{
+  font-size: 12px;
+}

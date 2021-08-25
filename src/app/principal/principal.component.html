@@ -1,0 +1,115 @@
+<form [formGroup]="formProfesor" (ngSubmit)="buscar()" autocomplete="off" novalidate>
+    <div class="card">
+        <div class="card-header bg-primary tex-center color-blanco">
+            <h5>Profesores</h5>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="form-col-form-label" for="profesor">Seleccione el docente a consultar</label><br>
+                        <select class="form-control" id="profesor" [formControl]="formProfesor.controls['profesor']"
+                            [class.is-invalid]="!formProfesor.controls['profesor'].valid && formProfesor.controls['profesor'].touched">
+                            <option value="">Seleccione</option>
+                            <option *ngFor="let iprofesor of lstProfesores" [value]="iprofesor.id">
+                                {{iprofesor.nombre}}
+                            </option>
+                        </select>
+                        <div class="invalida-mia"
+                            *ngIf="!formProfesor.controls['profesor'].valid && formProfesor.controls['profesor'].touched">
+                            El profesor es obligatorio
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="form-col-form-label" for="profesor">&nbsp;</label><br>
+                        <button class="btn btn-primary btn-sm mr-3" type="submit" [disabled]="!formProfesor.valid">
+                            <span class="fa fa-search"></span>
+                            Consultar
+                        </button>
+                        <button class="btn btn-danger btn-sm" type="button" (click)="reiniciar()">
+                            <span class="fa fa-refresh"></span>
+                            Reiniciar
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <h6> <span class="fa fa-book"></span> Listado de asignaturas</h6>
+
+                    <p-table #dt class="miTabla" [value]="lstAsignatura" tableStyleClass="prime-tablita">
+
+                        <ng-template pTemplate="header">
+                            <tr class="encabezados">
+                                <th id="nombre-asignatura">Nombre Asignatura</th>
+                                <th id="grado">Grado</th>
+                                <th id="opciones">Opciones</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td> {{item.nombreAsignatura}}</td>
+                                <td> {{item.grado}} {{item.salon}}</td>
+                                <td>
+                                    <span class="fa fa-eye icono-tabla color-success" pTooltip="Ver estudiantes"
+                                        placement="bottom" (click)="verEstudiantes(item)"></span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="3" class="etiqueta no-registro">
+                                    No existen asignaturas para el docente
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="summary">
+                            <span class="tabla no-margin">Número de Asignaturas: {{dt.totalRecords}}</span>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <h6> <span class="fa fa-user"></span> Listado de estudiantes</h6>
+
+                    <p-table #dt2 class="miTabla" [value]="lstEstudiante" tableStyleClass="prime-tablita">
+
+                        <ng-template pTemplate="header">
+                            <tr class="encabezados">
+                                <th class="th-peque" id="identificador-estudiante">Identificador</th>
+                                <th id="nombre-estudiante">Nombre Estudiante</th>
+                                
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td> {{item.id}}</td>
+                                <td> {{item.nombre}}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="2" class="etiqueta no-registro">
+                                    No existen estudiantes asociados a esa asignatura
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="summary">
+                            <span class="tabla no-margin">Número de estudiantes: {{dt2.totalRecords}}</span>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>
